@@ -21,7 +21,7 @@ public class ProductConverter implements Converter<ProductEntity, ProductDTO> {
         entity.setName(dto.getName());
         entity.setPrice(dto.getPrice());
         entity.setDescription(dto.getDescription());
-        entity.setProductCategoryEntity(productCategoryConverter.convertToEntity(dto.getProductCategoryDTO()));
+        entity.setProductCategoryEntity(productCategoryConverter.convertToEntity(dto.getCategory()));
 
         return entity;
     }
@@ -34,7 +34,7 @@ public class ProductConverter implements Converter<ProductEntity, ProductDTO> {
         dto.setName(entity.getName());
         dto.setPrice(entity.getPrice());
         dto.setDescription(entity.getDescription());
-        dto.setProductCategoryDTO(productCategoryConverter.convertToDto(entity.getProductCategoryEntity()));
+        dto.setCategory(productCategoryConverter.convertToDto(entity.getProductCategoryEntity()));
 
         return dto;
     }

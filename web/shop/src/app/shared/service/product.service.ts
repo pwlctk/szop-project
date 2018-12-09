@@ -25,7 +25,7 @@ export class ProductService {
   }
 
   public getProduct(id: number): Observable<ProductModel> {
-    return this.http.get("/api/product/" + id).pipe(map((response: ProductModel) => {
+    return this.http.get("/api/products/" + id).pipe(map((response: ProductModel) => {
       return response;
     }));
   }
@@ -35,16 +35,16 @@ export class ProductService {
   }
 
   public removeProduct(id: number) {
-    return this.http.delete("/api/product/" + id);
+    return this.http.delete("/api/products/" + id);
   }
 
   public saveProduct(product: ProductModel): Observable<ProductModel> {
     if (product.id) {
-      return this.http.put("/api/product/" + product.id, product).pipe(map((response: ProductModel) => {
+      return this.http.put("/api/products/" + product.id, product).pipe(map((response: ProductModel) => {
         return response;
       }));
     } else {
-      return this.http.post("/api/product", product).pipe(map((response: ProductModel) => {
+      return this.http.post("/api/products", product).pipe(map((response: ProductModel) => {
         return response;
       }));
     }
