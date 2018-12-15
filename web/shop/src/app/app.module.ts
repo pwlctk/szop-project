@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppRoutingModule} from "./app-routing.module";
 import {MainComponent} from './layout/main/main.component';
 import {HttpClientModule} from "@angular/common/http";
@@ -18,7 +17,10 @@ import {WarehouseComponent} from './admin-panel/warehouse/warehouse.component';
 import {ProductCategoryService} from "./shared/service/product-category.service";
 import {ProductCategoriesResolve, ProductCategoryResolve} from "./shared/resolve/product-category.resolve";
 import {ProductService} from "./shared/service/product.service";
-import {ProductResolve, ProductsResolve} from "./shared/resolve/product.resolve";
+import {ProductResolve, ProductsDictionaryResolve, ProductsResolve} from "./shared/resolve/product.resolve";
+import {EditWarehouseItemComponent } from './admin-panel/edit-warehouse-item/edit-warehouse-item.component';
+import {WarehouseItemService} from "./shared/service/warehouse-item.service";
+import {WarehouseItemResolve, WarehouseItemsResolve} from "./shared/resolve/warehouse-item.resolve";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import {ProductResolve, ProductsResolve} from "./shared/resolve/product.resolve"
     EditProductCategoryComponent,
     EditProductComponent,
     OrdersComponent,
-    WarehouseComponent
+    WarehouseComponent,
+    EditWarehouseItemComponent
   ],
   imports: [
     BrowserModule,
@@ -41,12 +44,16 @@ import {ProductResolve, ProductsResolve} from "./shared/resolve/product.resolve"
     SharedModule
   ],
   providers: [
+    ProductsDictionaryResolve,
     ProductCategoryService,
     ProductCategoriesResolve,
     ProductCategoryResolve,
     ProductService,
     ProductsResolve,
-    ProductResolve
+    ProductResolve,
+    WarehouseItemService,
+    WarehouseItemsResolve,
+    WarehouseItemResolve
   ],
   bootstrap: [MainComponent]
 })

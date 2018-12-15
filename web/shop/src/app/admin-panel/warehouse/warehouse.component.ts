@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {WarehouseItemModel} from "../../shared/model/warehouse-item.model";
+import {WarehouseItemService} from "../../shared/service/warehouse-item.service";
 
 @Component({
   selector: 'app-warehouse',
@@ -7,11 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WarehouseComponent implements OnInit {
 
-  products = [];
+  warehouseItems: Array<WarehouseItemModel> = [];
 
-  constructor() { }
+  constructor(private warehouseItemService: WarehouseItemService,
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
+    this.warehouseItems = this.route.snapshot.data['warehouseItems'];
+  }
+
+  removeWarehouseItem(warehouseItemId: number, index: number) {
+    this.warehouseItemService.removeWarehouseItem(warehouseItemId).subscribe(() => {
+      this.warehouseItems.splice(index, 1);
+    });
   }
 
 }

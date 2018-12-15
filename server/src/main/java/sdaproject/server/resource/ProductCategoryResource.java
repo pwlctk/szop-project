@@ -2,11 +2,15 @@ package sdaproject.server.resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import sdaproject.server.dto.DictionaryDTO;
 import sdaproject.server.dto.ProductCategoryDTO;
 import sdaproject.server.entity.ProductCategoryEntity;
 import sdaproject.server.service.ProductCategoryService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/product-categories")
@@ -23,6 +27,11 @@ public class ProductCategoryResource extends AbstractResource<ProductCategoryEnt
     @Override
     public ProductCategoryService getService() {
         return productCategoryService;
+    }
+
+    @GetMapping("/dictionary")
+    public List<DictionaryDTO> getProductCategoriesDictionary(){
+        return productCategoryService.getProductCategoriesDictionary();
     }
 
 }

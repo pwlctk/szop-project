@@ -4,6 +4,7 @@ import {Observable} from "rxjs/internal/Observable";
 import {map, startWith} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {Subject} from "rxjs/internal/Subject";
+import {DictionaryModel} from "../model/dictionary.model";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,12 @@ export class ProductService {
 
   public getProduct(id: number): Observable<ProductModel> {
     return this.http.get("/api/products/" + id).pipe(map((response: ProductModel) => {
+      return response;
+    }));
+  }
+
+  public getProductsDictionary(): Observable<DictionaryModel> {
+    return this.http.get("/api/products/dictionary").pipe(map((response: DictionaryModel) => {
       return response;
     }));
   }

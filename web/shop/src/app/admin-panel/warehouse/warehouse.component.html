@@ -9,21 +9,27 @@
     <th>Ilość w magazynie</th>
     <th>Akcje</th>
   </tr>
-  <tr *ngFor="let product of products; let rowIndex = index">
+  <tr *ngFor="let warehouseItem of warehouseItems; let rowIndex = index">
     <td>
-      {{ product.id }}
+      {{ warehouseItem.id }}
     </td>
     <td>
-      {{ product.name }}
+      {{ warehouseItem.product.name }}
     </td>
     <td>
-      {{ product.price }}
+      {{ warehouseItem.price | currency: ' '}} zł
     </td>
     <td>
-      {{ product.count }}
+      {{ warehouseItem.quantity }}
     </td>
     <td>
-      <button matTooltip="Aktualizuj stan magazynowy" mat-button><mat-icon>edit</mat-icon></button>
+      <button (click)="removeWarehouseItem(warehouseItem.id, rowIndex)" matTooltip="Usuń produkt" mat-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button [routerLink]="['/', 'admin-panel', 'warehouse', 'edit', warehouseItem.id]" matTooltip="Edytuj produkt"
+              mat-button>
+        <mat-icon>edit</mat-icon>
+      </button>
     </td>
   </tr>
 </table>

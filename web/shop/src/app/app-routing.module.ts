@@ -9,7 +9,9 @@ import {EditProductComponent} from "./admin-panel/edit-product/edit-product.comp
 import {OrdersComponent} from "./admin-panel/orders/orders.component";
 import {WarehouseComponent} from "./admin-panel/warehouse/warehouse.component";
 import {ProductCategoriesResolve, ProductCategoryResolve} from "./shared/resolve/product-category.resolve";
-import {ProductResolve, ProductsResolve} from "./shared/resolve/product.resolve";
+import {ProductResolve, ProductsDictionaryResolve, ProductsResolve} from "./shared/resolve/product.resolve";
+import {EditWarehouseItemComponent} from "./admin-panel/edit-warehouse-item/edit-warehouse-item.component";
+import {WarehouseItemResolve, WarehouseItemsResolve} from "./shared/resolve/warehouse-item.resolve";
 
 const routes: Routes = [
   {
@@ -36,7 +38,26 @@ const routes: Routes = [
       },
       {
         path: 'warehouse',
-        component: WarehouseComponent
+        component: WarehouseComponent,
+        resolve: {
+          warehouseItems: WarehouseItemsResolve,
+        }
+      },
+
+      {
+        path: 'warehouse/add',
+        component: EditWarehouseItemComponent,
+        resolve: {
+          products: ProductsDictionaryResolve,
+        }
+      },
+      {
+        path: 'warehouse/edit/:id',
+        component: EditWarehouseItemComponent,
+        resolve: {
+          warehouseItem: WarehouseItemResolve,
+          products: ProductsDictionaryResolve
+        }
       },
       {
         path: 'products',
